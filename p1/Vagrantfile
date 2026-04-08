@@ -1,0 +1,45 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# ═══════════════════════════════════════════════════════════
+#  CONFIGURATION — Change these values as needed
+# ═══════════════════════════════════════════════════════════
+VM_MEMORY   = ENV["VM_MEMORY"] || "1024"   # "512" or "1024" — set via env or edit here
+VM_CPUS     = 1
+
+SERVER_IP   = "192.168.56.110"
+WORKER_IP   = "192.168.56.111"
+SERVER_NAME = "yozainan-S"
+WORKER_NAME = "yozainan-SW"
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "debian/bookworm64"
+
+  # ──────────────── Server Node ────────────────
+  config.vm.define SERVER_NAME do |server|
+    server.vm.hostname = SERVER_NAME
+    server.vm.network "private_network", ip: SERVER_IP
+
+    server.vm.provider "virtualbox" do |v|
+      v.memory = VM_MEMORY
+      v.cpus   = VM_CPUS
+      v.customize ["modifyvm", :id, "--name", SERVER_NAME]
+    end
+
+    server.vm.provision "shell", path: "scripts/server.sh", args: [SERVER_IP]
+  end
+
+  # ──────────────── Worker Node ────────────────
+  config.vm.define WORKER_NAME do |worker|
+    worker.vm.hostname = WORKER_NAME
+    worker.vm.network "private_network", ip: WORKER_IP
+
+    worker.vm.provider "virtualbox" do |v|
+      v.memory = VM_MEMORY
+      v.cpus   = VM_CPUS
+      v.customize ["modifyvm", :id, "--name", WORKER_NAME]
+    end
+
+    worker.vm.provision "shell", path: "scripts/worker.sh", args: [SERVER_IP]
+  end
+end

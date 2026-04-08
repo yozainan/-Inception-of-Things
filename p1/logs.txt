@@ -1,0 +1,287 @@
+Bringing machine 'yozainan-S' up with 'virtualbox' provider...
+Bringing machine 'yozainan-SW' up with 'virtualbox' provider...
+==> yozainan-S: Importing base box 'debian/bookworm64'...
+[KProgress: 30%[KProgress: 40%[KProgress: 50%[KProgress: 70%[KProgress: 90%[K==> yozainan-S: Matching MAC address for NAT networking...
+==> yozainan-S: Checking if box 'debian/bookworm64' version '12.20250126.1' is up to date...
+==> yozainan-S: Setting the name of the VM: p1_yozainan-S_1775665336695_91756
+==> yozainan-S: Clearing any previously set network interfaces...
+==> yozainan-S: Preparing network interfaces based on configuration...
+    yozainan-S: Adapter 1: nat
+    yozainan-S: Adapter 2: hostonly
+==> yozainan-S: Forwarding ports...
+    yozainan-S: 22 (guest) => 2222 (host) (adapter 1)
+==> yozainan-S: Running 'pre-boot' VM customizations...
+==> yozainan-S: Booting VM...
+==> yozainan-S: Waiting for machine to boot. This may take a few minutes...
+    yozainan-S: SSH address: 127.0.0.1:2222
+    yozainan-S: SSH username: vagrant
+    yozainan-S: SSH auth method: private key
+    yozainan-S: Warning: Connection reset. Retrying...
+    yozainan-S: 
+    yozainan-S: Vagrant insecure key detected. Vagrant will automatically replace
+    yozainan-S: this with a newly generated keypair for better security.
+    yozainan-S: 
+    yozainan-S: Inserting generated public key within guest...
+    yozainan-S: Removing insecure key from the guest if it's present...
+    yozainan-S: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> yozainan-S: Machine booted and ready!
+==> yozainan-S: Checking for guest additions in VM...
+    yozainan-S: The guest additions on this VM do not match the installed version of
+    yozainan-S: VirtualBox! In most cases this is fine, but in rare cases it can
+    yozainan-S: prevent things such as shared folders from working properly. If you see
+    yozainan-S: shared folder errors, please make sure the guest additions within the
+    yozainan-S: virtual machine match the version of VirtualBox you have installed on
+    yozainan-S: your host and reload your VM.
+    yozainan-S: 
+    yozainan-S: Guest Additions Version: 6.0.0 r127566
+    yozainan-S: VirtualBox Version: 7.1
+==> yozainan-S: Setting hostname...
+==> yozainan-S: Configuring and enabling network interfaces...
+==> yozainan-S: Mounting shared folders...
+    yozainan-S: /home/youssef/Desktop/IOT/p1 => /vagrant
+==> yozainan-S: Running provisioner: shell...
+    yozainan-S: Running: /tmp/vagrant-shell20260408-131518-zwz24r.sh
+    yozainan-S: ╔══════════════════════════════════════════════════════════════╗
+    yozainan-S: ║           yozainan-S — K3s Server Provisioning              ║
+    yozainan-S: ║           Role: Controller (Server Mode)                    ║
+    yozainan-S: ║           IP:   192.168.56.110                          ║
+    yozainan-S: ╚══════════════════════════════════════════════════════════════╝
+    yozainan-S: >>> [yozainan-S] Installing dependencies...
+    yozainan-S: Get:1 https://deb.debian.org/debian bookworm InRelease [151 kB]
+    yozainan-S: Get:2 https://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+    yozainan-S: Get:3 https://deb.debian.org/debian bookworm-backports InRelease [59.4 kB]
+    yozainan-S: Get:4 https://deb.debian.org/debian bookworm/main Sources [9495 kB]
+    yozainan-S: Get:5 https://security.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+    yozainan-S: Get:6 https://security.debian.org/debian-security bookworm-security/main Sources [185 kB]
+    yozainan-S: Get:7 https://security.debian.org/debian-security bookworm-security/main amd64 Packages [294 kB]
+    yozainan-S: Get:8 https://security.debian.org/debian-security bookworm-security/main Translation-en [179 kB]
+    yozainan-S: Get:9 https://deb.debian.org/debian bookworm/main amd64 Packages [8792 kB]
+    yozainan-S: Get:10 https://deb.debian.org/debian bookworm/main Translation-en [6108 kB]
+    yozainan-S: Get:11 https://deb.debian.org/debian bookworm-updates/main Sources [3288 B]
+    yozainan-S: Get:12 https://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]
+    yozainan-S: Get:13 https://deb.debian.org/debian bookworm-updates/main Translation-en [5448 B]
+    yozainan-S: Get:14 https://deb.debian.org/debian bookworm-backports/main Sources [299 kB]
+    yozainan-S: Get:15 https://deb.debian.org/debian bookworm-backports/main amd64 Packages [305 kB]
+    yozainan-S: Get:16 https://deb.debian.org/debian bookworm-backports/main Translation-en [257 kB]
+    yozainan-S: Fetched 26.2 MB in 45s (579 kB/s)
+    yozainan-S: Reading package lists...
+    yozainan-S: Reading package lists...
+    yozainan-S: Building dependency tree...
+    yozainan-S: Reading state information...
+    yozainan-S: The following additional packages will be installed:
+    yozainan-S:   libcurl3-gnutls libcurl4
+    yozainan-S: The following NEW packages will be installed:
+    yozainan-S:   curl libcurl4
+    yozainan-S: The following packages will be upgraded:
+    yozainan-S:   libcurl3-gnutls
+    yozainan-S: 1 upgraded, 2 newly installed, 0 to remove and 82 not upgraded.
+    yozainan-S: Need to get 1093 kB of archives.
+    yozainan-S: After this operation, 1366 kB of additional disk space will be used.
+    yozainan-S: Get:1 https://deb.debian.org/debian bookworm/main amd64 libcurl4 amd64 7.88.1-10+deb12u14 [392 kB]
+    yozainan-S: Get:2 https://deb.debian.org/debian bookworm/main amd64 curl amd64 7.88.1-10+deb12u14 [316 kB]
+    yozainan-S: Get:3 https://deb.debian.org/debian bookworm/main amd64 libcurl3-gnutls amd64 7.88.1-10+deb12u14 [386 kB]
+    yozainan-S: apt-listchanges: Reading changelogs...
+    yozainan-S: Fetched 1093 kB in 3s (381 kB/s)
+    yozainan-S: Selecting previously unselected package libcurl4:amd64.
+    yozainan-S: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 25481 files and directories currently installed.)
+    yozainan-S: Preparing to unpack .../libcurl4_7.88.1-10+deb12u14_amd64.deb ...
+    yozainan-S: Unpacking libcurl4:amd64 (7.88.1-10+deb12u14) ...
+    yozainan-S: Selecting previously unselected package curl.
+    yozainan-S: Preparing to unpack .../curl_7.88.1-10+deb12u14_amd64.deb ...
+    yozainan-S: Unpacking curl (7.88.1-10+deb12u14) ...
+    yozainan-S: Preparing to unpack .../libcurl3-gnutls_7.88.1-10+deb12u14_amd64.deb ...
+    yozainan-S: Unpacking libcurl3-gnutls:amd64 (7.88.1-10+deb12u14) over (7.88.1-10+deb12u8) ...
+    yozainan-S: Setting up libcurl3-gnutls:amd64 (7.88.1-10+deb12u14) ...
+    yozainan-S: Setting up libcurl4:amd64 (7.88.1-10+deb12u14) ...
+    yozainan-S: Setting up curl (7.88.1-10+deb12u14) ...
+    yozainan-S: Processing triggers for man-db (2.11.2-2) ...
+    yozainan-S: Processing triggers for libc-bin (2.36-9+deb12u9) ...
+    yozainan-S: >>> [yozainan-S] Setting up swap space...
+    yozainan-S: Setting up swapspace version 1, size = 1024 MiB (1073737728 bytes)
+    yozainan-S: no label, UUID=8663c697-cac3-4054-9ba2-7529557519d5
+    yozainan-S: >>> [yozainan-S] Installing K3s in SERVER mode...
+    yozainan-S: [INFO]  Finding release for channel stable
+    yozainan-S: [INFO]  Using v1.34.6+k3s1 as release
+    yozainan-S: [INFO]  Downloading hash https://github.com/k3s-io/k3s/releases/download/v1.34.6%2Bk3s1/sha256sum-amd64.txt
+    yozainan-S: [INFO]  Downloading binary https://github.com/k3s-io/k3s/releases/download/v1.34.6%2Bk3s1/k3s
+    yozainan-S: [INFO]  Verifying binary download
+    yozainan-S: [INFO]  Installing k3s to /usr/local/bin/k3s
+    yozainan-S: [INFO]  Skipping installation of SELinux RPM
+    yozainan-S: [INFO]  Creating /usr/local/bin/kubectl symlink to k3s
+    yozainan-S: [INFO]  Creating /usr/local/bin/crictl symlink to k3s
+    yozainan-S: [INFO]  Creating /usr/local/bin/ctr symlink to k3s
+    yozainan-S: [INFO]  Creating killall script /usr/local/bin/k3s-killall.sh
+    yozainan-S: [INFO]  Creating uninstall script /usr/local/bin/k3s-uninstall.sh
+    yozainan-S: [INFO]  env: Creating environment file /etc/systemd/system/k3s.service.env
+    yozainan-S: [INFO]  systemd: Creating service file /etc/systemd/system/k3s.service
+    yozainan-S: [INFO]  systemd: Enabling k3s unit
+    yozainan-S: Created symlink /etc/systemd/system/multi-user.target.wants/k3s.service → /etc/systemd/system/k3s.service.
+    yozainan-S: [INFO]  systemd: Starting k3s
+    yozainan-S: >>> [yozainan-S] Waiting for K3s to become ready...
+    yozainan-S:     Waiting for K3s node to be Ready... (0s/120s)
+    yozainan-S: >>> [yozainan-S] K3s server node is Ready!
+    yozainan-S: >>> [yozainan-S] Exporting node-token to shared folder...
+    yozainan-S: >>> [yozainan-S] Setting up kubectl for vagrant user...
+    yozainan-S: >>> [yozainan-S] Generating SSH key for cross-VM access...
+    yozainan-S: Generating public/private rsa key pair.
+    yozainan-S: Your identification has been saved in /home/vagrant/.ssh/id_rsa
+    yozainan-S: Your public key has been saved in /home/vagrant/.ssh/id_rsa.pub
+    yozainan-S: The key fingerprint is:
+    yozainan-S: SHA256:L1YdS9M4qt0GtJQYdRTdgsvPAU+CiTHGx9hWnVGQpdA root@yozainan-S
+    yozainan-S: The key's randomart image is:
+    yozainan-S: +---[RSA 4096]----+
+    yozainan-S: |       .=B.=**oOo|
+    yozainan-S: |       .++Bo++E..|
+    yozainan-S: |        .o+.**o. |
+    yozainan-S: |         o =o=o  |
+    yozainan-S: |        S = oo . |
+    yozainan-S: |         = o  o  |
+    yozainan-S: |        + o o    |
+    yozainan-S: |       . . .     |
+    yozainan-S: |                 |
+    yozainan-S: +----[SHA256]-----+
+    yozainan-S: ╔══════════════════════════════════════════════════════════════╗
+    yozainan-S: ║  ✅  yozainan-S — K3s Server provisioning COMPLETE          ║
+    yozainan-S: ║      Hostname: yozainan-S                                  ║
+    yozainan-S: ║      IP:       192.168.56.110                                 ║
+    yozainan-S: ║      Role:     K3s Controller (Server)                      ║
+    yozainan-S: ║      kubectl:  installed ✅                                 ║
+    yozainan-S: ╚══════════════════════════════════════════════════════════════╝
+==> yozainan-SW: Importing base box 'debian/bookworm64'...
+[KProgress: 40%[KProgress: 50%[KProgress: 70%[KProgress: 90%[K==> yozainan-SW: Matching MAC address for NAT networking...
+==> yozainan-SW: Checking if box 'debian/bookworm64' version '12.20250126.1' is up to date...
+==> yozainan-SW: Setting the name of the VM: p1_yozainan-SW_1775665601815_91963
+==> yozainan-SW: Fixed port collision for 22 => 2222. Now on port 2200.
+==> yozainan-SW: Clearing any previously set network interfaces...
+==> yozainan-SW: Preparing network interfaces based on configuration...
+    yozainan-SW: Adapter 1: nat
+    yozainan-SW: Adapter 2: hostonly
+==> yozainan-SW: Forwarding ports...
+    yozainan-SW: 22 (guest) => 2200 (host) (adapter 1)
+==> yozainan-SW: Running 'pre-boot' VM customizations...
+==> yozainan-SW: Booting VM...
+==> yozainan-SW: Waiting for machine to boot. This may take a few minutes...
+    yozainan-SW: SSH address: 127.0.0.1:2200
+    yozainan-SW: SSH username: vagrant
+    yozainan-SW: SSH auth method: private key
+    yozainan-SW: Warning: Connection reset. Retrying...
+    yozainan-SW: 
+    yozainan-SW: Vagrant insecure key detected. Vagrant will automatically replace
+    yozainan-SW: this with a newly generated keypair for better security.
+    yozainan-SW: 
+    yozainan-SW: Inserting generated public key within guest...
+    yozainan-SW: Removing insecure key from the guest if it's present...
+    yozainan-SW: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> yozainan-SW: Machine booted and ready!
+==> yozainan-SW: Checking for guest additions in VM...
+    yozainan-SW: The guest additions on this VM do not match the installed version of
+    yozainan-SW: VirtualBox! In most cases this is fine, but in rare cases it can
+    yozainan-SW: prevent things such as shared folders from working properly. If you see
+    yozainan-SW: shared folder errors, please make sure the guest additions within the
+    yozainan-SW: virtual machine match the version of VirtualBox you have installed on
+    yozainan-SW: your host and reload your VM.
+    yozainan-SW: 
+    yozainan-SW: Guest Additions Version: 6.0.0 r127566
+    yozainan-SW: VirtualBox Version: 7.1
+==> yozainan-SW: Setting hostname...
+==> yozainan-SW: Configuring and enabling network interfaces...
+==> yozainan-SW: Mounting shared folders...
+    yozainan-SW: /home/youssef/Desktop/IOT/p1 => /vagrant
+==> yozainan-SW: Running provisioner: shell...
+    yozainan-SW: Running: /tmp/vagrant-shell20260408-131518-yzy4fa.sh
+    yozainan-SW: ╔══════════════════════════════════════════════════════════════╗
+    yozainan-SW: ║          yozainan-SW — K3s Agent Provisioning               ║
+    yozainan-SW: ║          Role: Worker (Agent Mode)                          ║
+    yozainan-SW: ║          Server: 192.168.56.110                         ║
+    yozainan-SW: ╚══════════════════════════════════════════════════════════════╝
+    yozainan-SW: >>> [yozainan-SW] Waiting for K3s server token...
+    yozainan-SW: >>> [yozainan-SW] Token acquired!
+    yozainan-SW: >>> [yozainan-SW] Installing dependencies...
+    yozainan-SW: Get:1 https://security.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+    yozainan-SW: Get:2 https://security.debian.org/debian-security bookworm-security/main Sources [185 kB]
+    yozainan-SW: Get:3 https://deb.debian.org/debian bookworm InRelease [151 kB]
+    yozainan-SW: Get:4 https://security.debian.org/debian-security bookworm-security/main amd64 Packages [294 kB]
+    yozainan-SW: Get:5 https://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+    yozainan-SW: Get:6 https://deb.debian.org/debian bookworm-backports InRelease [59.4 kB]
+    yozainan-SW: Get:7 https://security.debian.org/debian-security bookworm-security/main Translation-en [179 kB]
+    yozainan-SW: Get:8 https://deb.debian.org/debian bookworm/main Sources [9495 kB]
+    yozainan-SW: Get:9 https://deb.debian.org/debian bookworm/main amd64 Packages [8792 kB]
+    yozainan-SW: Get:10 https://deb.debian.org/debian bookworm/main Translation-en [6108 kB]
+    yozainan-SW: Get:11 https://deb.debian.org/debian bookworm-updates/main Sources [3288 B]
+    yozainan-SW: Get:12 https://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]
+    yozainan-SW: Get:13 https://deb.debian.org/debian bookworm-updates/main Translation-en [5448 B]
+    yozainan-SW: Get:14 https://deb.debian.org/debian bookworm-backports/main Sources [299 kB]
+    yozainan-SW: Get:15 https://deb.debian.org/debian bookworm-backports/main amd64 Packages [305 kB]
+    yozainan-SW: Get:16 https://deb.debian.org/debian bookworm-backports/main Translation-en [257 kB]
+    yozainan-SW: Fetched 26.2 MB in 1min 14s (356 kB/s)
+    yozainan-SW: Reading package lists...
+    yozainan-SW: Reading package lists...
+    yozainan-SW: Building dependency tree...
+    yozainan-SW: Reading state information...
+    yozainan-SW: The following additional packages will be installed:
+    yozainan-SW:   libcurl3-gnutls libcurl4
+    yozainan-SW: The following NEW packages will be installed:
+    yozainan-SW:   curl libcurl4
+    yozainan-SW: The following packages will be upgraded:
+    yozainan-SW:   libcurl3-gnutls
+    yozainan-SW: 1 upgraded, 2 newly installed, 0 to remove and 82 not upgraded.
+    yozainan-SW: Need to get 1093 kB of archives.
+    yozainan-SW: After this operation, 1366 kB of additional disk space will be used.
+    yozainan-SW: Get:1 https://deb.debian.org/debian bookworm/main amd64 libcurl4 amd64 7.88.1-10+deb12u14 [392 kB]
+    yozainan-SW: Get:2 https://deb.debian.org/debian bookworm/main amd64 curl amd64 7.88.1-10+deb12u14 [316 kB]
+    yozainan-SW: Get:3 https://deb.debian.org/debian bookworm/main amd64 libcurl3-gnutls amd64 7.88.1-10+deb12u14 [386 kB]
+    yozainan-SW: apt-listchanges: Reading changelogs...
+    yozainan-SW: Fetched 1093 kB in 1s (813 kB/s)
+    yozainan-SW: Selecting previously unselected package libcurl4:amd64.
+    yozainan-SW: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 25481 files and directories currently installed.)
+    yozainan-SW: Preparing to unpack .../libcurl4_7.88.1-10+deb12u14_amd64.deb ...
+    yozainan-SW: Unpacking libcurl4:amd64 (7.88.1-10+deb12u14) ...
+    yozainan-SW: Selecting previously unselected package curl.
+    yozainan-SW: Preparing to unpack .../curl_7.88.1-10+deb12u14_amd64.deb ...
+    yozainan-SW: Unpacking curl (7.88.1-10+deb12u14) ...
+    yozainan-SW: Preparing to unpack .../libcurl3-gnutls_7.88.1-10+deb12u14_amd64.deb ...
+    yozainan-SW: Unpacking libcurl3-gnutls:amd64 (7.88.1-10+deb12u14) over (7.88.1-10+deb12u8) ...
+    yozainan-SW: Setting up libcurl3-gnutls:amd64 (7.88.1-10+deb12u14) ...
+    yozainan-SW: Setting up libcurl4:amd64 (7.88.1-10+deb12u14) ...
+    yozainan-SW: Setting up curl (7.88.1-10+deb12u14) ...
+    yozainan-SW: Processing triggers for man-db (2.11.2-2) ...
+    yozainan-SW: Processing triggers for libc-bin (2.36-9+deb12u9) ...
+    yozainan-SW: >>> [yozainan-SW] Setting up swap space...
+    yozainan-SW: Setting up swapspace version 1, size = 1024 MiB (1073737728 bytes)
+    yozainan-SW: no label, UUID=45e6d727-d665-49c7-aee1-1af423e4ea01
+    yozainan-SW: >>> [yozainan-SW] Installing K3s in AGENT mode...
+    yozainan-SW: [INFO]  Finding release for channel stable
+    yozainan-SW: [INFO]  Using v1.34.6+k3s1 as release
+    yozainan-SW: [INFO]  Downloading hash https://github.com/k3s-io/k3s/releases/download/v1.34.6%2Bk3s1/sha256sum-amd64.txt
+    yozainan-SW: [INFO]  Downloading binary https://github.com/k3s-io/k3s/releases/download/v1.34.6%2Bk3s1/k3s
+    yozainan-SW: [INFO]  Verifying binary download
+    yozainan-SW: [INFO]  Installing k3s to /usr/local/bin/k3s
+    yozainan-SW: [INFO]  Skipping installation of SELinux RPM
+    yozainan-SW: [INFO]  Creating /usr/local/bin/kubectl symlink to k3s
+    yozainan-SW: [INFO]  Creating /usr/local/bin/crictl symlink to k3s
+    yozainan-SW: [INFO]  Creating /usr/local/bin/ctr symlink to k3s
+    yozainan-SW: [INFO]  Creating killall script /usr/local/bin/k3s-killall.sh
+    yozainan-SW: [INFO]  Creating uninstall script /usr/local/bin/k3s-agent-uninstall.sh
+    yozainan-SW: [INFO]  env: Creating environment file /etc/systemd/system/k3s-agent.service.env
+    yozainan-SW: [INFO]  systemd: Creating service file /etc/systemd/system/k3s-agent.service
+    yozainan-SW: [INFO]  systemd: Enabling k3s-agent unit
+    yozainan-SW: Created symlink /etc/systemd/system/multi-user.target.wants/k3s-agent.service → /etc/systemd/system/k3s-agent.service.
+    yozainan-SW: [INFO]  systemd: Starting k3s-agent
+    yozainan-SW: >>> [yozainan-SW] Setting up SSH cross-access...
+    yozainan-SW: ╔══════════════════════════════════════════════════════════════╗
+    yozainan-SW: ║  ✅  yozainan-SW — K3s Agent provisioning COMPLETE          ║
+    yozainan-SW: ║      Hostname: yozainan-SW                                  ║
+    yozainan-SW: ║      IP:       192.168.56.111                               ║
+    yozainan-SW: ║      Role:     K3s Agent (Worker)                           ║
+    yozainan-SW: ║      Server:   192.168.56.110                           ║
+    yozainan-SW: ╚══════════════════════════════════════════════════════════════╝
+
+==> yozainan-S: Machine 'yozainan-S' has a post `vagrant up` message. This is a message
+==> yozainan-S: from the creator of the Vagrantfile, and not from Vagrant itself:
+==> yozainan-S: 
+==> yozainan-S: Vanilla Debian box. See https://app.vagrantup.com/debian for help and bug reports
+
+==> yozainan-SW: Machine 'yozainan-SW' has a post `vagrant up` message. This is a message
+==> yozainan-SW: from the creator of the Vagrantfile, and not from Vagrant itself:
+==> yozainan-SW: 
+==> yozainan-SW: Vanilla Debian box. See https://app.vagrantup.com/debian for help and bug reports
