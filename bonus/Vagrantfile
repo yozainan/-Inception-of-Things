@@ -1,0 +1,37 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# ═══════════════════════════════════════════════════════════════════════
+#  Inception-of-Things — Bonus Part: Local GitLab + ArgoCD
+#  Server: yozainan-bonus (192.168.56.120) 
+#  Requires: 8GB RAM minimum to prevent GitLab OOM crashes
+# ═══════════════════════════════════════════════════════════════════════
+
+VM_MEMORY   = ENV["VM_MEMORY"] || "8192"   # 8 GB for GitLab + K3d
+VM_CPUS     = 4
+
+SERVER_IP   = "192.168.56.120"
+SERVER_NAME = "yozainan-bonus"
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "debian/bookworm64"
+
+  config.vm.define SERVER_NAME do |server|
+    server.vm.hostname = SERVER_NAME
+    server.vm.network "private_network", ip: SERVER_IP
+
+    # Port forwarding for local host access
+    server.vm.network "forwarded_port", guest: 80, host: 8080, id: "gitlab"
+    server.vm.network "forwarded_port", guest: 8888, host: 8888, id: "app"
+
+    server.vm.provider "virtualbox" do |v|
+      v.memory = VM_MEMORY
+      v.cpus   = VM_CPUS
+      v.customize ["modifyvm", :id, "--name", SERVER_NAME]
+      # Hardware virtualization support
+      v.customize ["modifyvm", :id, "--nested-hw-virt", "on"]
+    end
+
+    server.vm.provision "shell", path: "scripts/setup.sh", args: [SERVER_IP]
+  end
+end

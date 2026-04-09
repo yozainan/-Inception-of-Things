@@ -1,0 +1,199 @@
+# ═══════════════════════════════════════════════════════════════════════
+#  Inception-of-Things — Part 2: Three Web Applications
+#  app1 (1 replica) | app2 (3 replicas) | app3 (1 replica)
+# ═══════════════════════════════════════════════════════════════════════
+
+# ──────────────────────────────────────────────────────────────────────
+#  APP 1 — Deployment (1 replica)
+# ──────────────────────────────────────────────────────────────────────
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-one
+  labels:
+    app: app-one
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-one
+  template:
+    metadata:
+      labels:
+        app: app-one
+    spec:
+      initContainers:
+      - name: init-html
+        image: busybox:1.36
+        command:
+        - sh
+        - -c
+        - |
+          cat > /work/index.html <<'HTMLEOF'
+          <!DOCTYPE html>
+          <html>
+          <head><title>App One</title></head>
+          <body style="background:#1a1a2e;color:#e94560;font-family:sans-serif;text-align:center;padding:60px;">
+            <h1>Hello from app-one!</h1>
+            <p style="color:#eee;">Host: app1.com → This is Application 1</p>
+          </body>
+          </html>
+          HTMLEOF
+        volumeMounts:
+        - name: html
+          mountPath: /work
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: html
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: html
+        emptyDir: {}
+---
+# ──────────────────────────────────────────────────────────────────────
+#  APP 1 — Service
+# ──────────────────────────────────────────────────────────────────────
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-one-svc
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: app-one
+---
+# ──────────────────────────────────────────────────────────────────────
+#  APP 2 — Deployment (3 replicas — REQUIRED by subject)
+# ──────────────────────────────────────────────────────────────────────
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-two
+  labels:
+    app: app-two
+spec:
+  replicas: 3       # ← SUBJECT REQUIREMENT: app2 must have 3 replicas
+  selector:
+    matchLabels:
+      app: app-two
+  template:
+    metadata:
+      labels:
+        app: app-two
+    spec:
+      initContainers:
+      - name: init-html
+        image: busybox:1.36
+        command:
+        - sh
+        - -c
+        - |
+          cat > /work/index.html <<'HTMLEOF'
+          <!DOCTYPE html>
+          <html>
+          <head><title>App Two</title></head>
+          <body style="background:#16213e;color:#0f3460;font-family:sans-serif;text-align:center;padding:60px;">
+            <h1 style="color:#e94560;">Hello from app-two!</h1>
+            <p style="color:#eee;">Host: app2.com → This is Application 2 (3 replicas)</p>
+          </body>
+          </html>
+          HTMLEOF
+        volumeMounts:
+        - name: html
+          mountPath: /work
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: html
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: html
+        emptyDir: {}
+---
+# ──────────────────────────────────────────────────────────────────────
+#  APP 2 — Service
+# ──────────────────────────────────────────────────────────────────────
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-two-svc
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: app-two
+---
+# ──────────────────────────────────────────────────────────────────────
+#  APP 3 — Deployment (1 replica — default/fallback app)
+# ──────────────────────────────────────────────────────────────────────
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-three
+  labels:
+    app: app-three
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-three
+  template:
+    metadata:
+      labels:
+        app: app-three
+    spec:
+      initContainers:
+      - name: init-html
+        image: busybox:1.36
+        command:
+        - sh
+        - -c
+        - |
+          cat > /work/index.html <<'HTMLEOF'
+          <!DOCTYPE html>
+          <html>
+          <head><title>App Three (Default)</title></head>
+          <body style="background:#0f3460;color:#53354a;font-family:sans-serif;text-align:center;padding:60px;">
+            <h1 style="color:#e94560;">Hello from app-three!</h1>
+            <p style="color:#eee;">Default route → This is Application 3 (fallback)</p>
+          </body>
+          </html>
+          HTMLEOF
+        volumeMounts:
+        - name: html
+          mountPath: /work
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: html
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: html
+        emptyDir: {}
+---
+# ──────────────────────────────────────────────────────────────────────
+#  APP 3 — Service
+# ──────────────────────────────────────────────────────────────────────
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-three-svc
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: app-three
