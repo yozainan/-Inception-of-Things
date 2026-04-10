@@ -65,13 +65,17 @@ fi
 echo ">>> [P3] Step 5: Cleaning up any existing K3d cluster..."
 k3d cluster delete iot-p3 2>/dev/null || true
 
-# ── Step 6: Create K3d cluster with port mapping ─────────────────────
+# ── Step 6: Create K3d cluster ─────────────────────────────────────────
 echo ">>> [P3] Step 6: Creating K3d cluster 'iot-p3'..."
 k3d cluster create iot-p3 \
-    --port "8888:8888@loadbalancer" \
-    --port "8080:80@loadbalancer" \
-    --port "8443:443@loadbalancer" \
+    --k3s-arg "--kubelet-arg=eviction-hard=imagefs.available<1%,nodefs.available<1%@server:*" \
+    --k3s-arg "--kubelet-arg=eviction-minimum-reclaim=imagefs.available=1%,nodefs.available=1%@server:*" \
     --wait
+
+# Merge kubeconfig for the local user
+k3d kubeconfig merge iot-p3 --kubeconfig-merge-default
+chmod 600 ~/.kube/config || true
+chown $USER:$USER ~/.kube/config || true
 
 echo ">>> [P3] K3d cluster created. Waiting for node to be Ready..."
 TIMEOUT=120
@@ -96,14 +100,14 @@ echo ">>> [P3] Namespaces 'argocd' and 'dev' created."
 
 # ── Step 8: Install Argo CD in 'argocd' namespace ────────────────────
 echo ">>> [P3] Step 8: Installing Argo CD..."
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml --server-side
 
 echo ">>> [P3] Waiting for Argo CD pods to be Running..."
 TIMEOUT=300
 ELAPSED=0
 while true; do
-    TOTAL=$(kubectl get pods -n argocd --no-headers 2>/dev/null | wc -l)
-    READY=$(kubectl get pods -n argocd --no-headers 2>/dev/null | grep "Running" | wc -l)
+    TOTAL=$(kubectl get pods -n argocd --no-headers 2>/dev/null | wc -l || true)
+    READY=$(kubectl get pods -n argocd --no-headers 2>/dev/null | grep "Running" | wc -l || true)
     if [ "$TOTAL" -gt 0 ] && [ "$TOTAL" -eq "$READY" ]; then
         break
     fi
@@ -183,8 +187,8 @@ echo ">>> [P3] Waiting for Argo CD to sync the application..."
 TIMEOUT=180
 ELAPSED=0
 while true; do
-    POD_COUNT=$(kubectl get pods -n dev --no-headers 2>/dev/null | wc -l)
-    POD_RUNNING=$(kubectl get pods -n dev --no-headers 2>/dev/null | grep "Running" | wc -l)
+    POD_COUNT=$(kubectl get pods -n dev --no-headers 2>/dev/null | wc -l || true)
+    POD_RUNNING=$(kubectl get pods -n dev --no-headers 2>/dev/null | grep "Running" | wc -l || true)
     if [ "$POD_COUNT" -gt 0 ] && [ "$POD_COUNT" -eq "$POD_RUNNING" ]; then
         echo ">>> [P3] Application pod is Running in 'dev' namespace!"
         break
