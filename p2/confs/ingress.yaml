@@ -1,0 +1,50 @@
+# ═══════════════════════════════════════════════════════════════════════
+#  Inception-of-Things — Part 2: Ingress Routing Rules
+#  app1.com → app1  |  app2.com → app2  |  default → app3
+#
+#  NOTE: K3s v1.30+ ships Traefik v3 which dropped spec.defaultBackend.
+#  The correct Traefik v3 fallback pattern is a rule with no host field
+#  placed last — Traefik matches it for any request that doesn't match
+#  the preceding host-specific rules.
+# ═══════════════════════════════════════════════════════════════════════
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: main-ingress
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  # ── Host: app1.com → app1 ──────────────────────────────────────────
+  - host: app1.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: app-one-svc
+            port:
+              number: 80
+  # ── Host: app2.com → app2 ──────────────────────────────────────────
+  - host: app2.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: app-two-svc
+            port:
+              number: 80
+  # ── Default/fallback → app3 (no host = catch-all in Traefik v3) ────
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: app-three-svc
+            port:
+              number: 80

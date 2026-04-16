@@ -1,0 +1,33 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# ═══════════════════════════════════════════════════════════════════════
+#  Inception-of-Things — Part 2: K3s with Three Web Applications
+#  Server: yozainan-S (192.168.56.110) — K3s server mode + Ingress
+# ═══════════════════════════════════════════════════════════════════════
+
+VM_MEMORY   = ENV["VM_MEMORY"] || "1024"   # "512" or "1024"
+VM_CPUS     = 1
+
+SERVER_IP   = "192.168.56.110"
+SERVER_NAME = "yozainan-S"
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "debian/bookworm64"
+
+  # ──────────────────────────────────────────────
+  #  yozainan-S — K3s Server with 3 Apps + Ingress
+  # ──────────────────────────────────────────────
+  config.vm.define SERVER_NAME do |server|
+    server.vm.hostname = SERVER_NAME
+    server.vm.network "private_network", ip: SERVER_IP
+
+    server.vm.provider "virtualbox" do |v|
+      v.memory = VM_MEMORY
+      v.cpus   = VM_CPUS
+      v.customize ["modifyvm", :id, "--name", SERVER_NAME]
+    end
+
+    server.vm.provision "shell", path: "scripts/server.sh", args: [SERVER_IP]
+  end
+end

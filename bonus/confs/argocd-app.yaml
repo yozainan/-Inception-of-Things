@@ -1,0 +1,25 @@
+# ═══════════════════════════════════════════════════════════════════════
+#  ArgoCD Application bridging to local GitLab namespace
+# ═══════════════════════════════════════════════════════════════════════
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: iot-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    # URL translates to the internal Kubernetes DNS name for the GitLab service
+    repoURL: 'http://gitlab-svc.gitlab.svc.cluster.local/root/iot-app.git'
+    targetRevision: HEAD
+    path: .
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

@@ -1,0 +1,152 @@
+Bringing machine 'yozainan-S' up with 'virtualbox' provider...
+==> yozainan-S: Checking if box 'debian/bookworm64' version '12.20250126.1' is up to date...
+==> yozainan-S: Clearing any previously set forwarded ports...
+==> yozainan-S: Clearing any previously set network interfaces...
+==> yozainan-S: Preparing network interfaces based on configuration...
+    yozainan-S: Adapter 1: nat
+    yozainan-S: Adapter 2: hostonly
+==> yozainan-S: Forwarding ports...
+    yozainan-S: 22 (guest) => 2222 (host) (adapter 1)
+==> yozainan-S: Running 'pre-boot' VM customizations...
+==> yozainan-S: Booting VM...
+==> yozainan-S: Waiting for machine to boot. This may take a few minutes...
+    yozainan-S: SSH address: 127.0.0.1:2222
+    yozainan-S: SSH username: vagrant
+    yozainan-S: SSH auth method: private key
+    yozainan-S: Warning: Connection reset. Retrying...
+    yozainan-S: Warning: Remote connection disconnect. Retrying...
+    yozainan-S: 
+    yozainan-S: Vagrant insecure key detected. Vagrant will automatically replace
+    yozainan-S: this with a newly generated keypair for better security.
+    yozainan-S: 
+    yozainan-S: Inserting generated public key within guest...
+    yozainan-S: Removing insecure key from the guest if it's present...
+    yozainan-S: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> yozainan-S: Machine booted and ready!
+==> yozainan-S: Checking for guest additions in VM...
+    yozainan-S: The guest additions on this VM do not match the installed version of
+    yozainan-S: VirtualBox! In most cases this is fine, but in rare cases it can
+    yozainan-S: prevent things such as shared folders from working properly. If you see
+    yozainan-S: shared folder errors, please make sure the guest additions within the
+    yozainan-S: virtual machine match the version of VirtualBox you have installed on
+    yozainan-S: your host and reload your VM.
+    yozainan-S: 
+    yozainan-S: Guest Additions Version: 6.0.0 r127566
+    yozainan-S: VirtualBox Version: 7.1
+==> yozainan-S: Setting hostname...
+==> yozainan-S: Configuring and enabling network interfaces...
+==> yozainan-S: Mounting shared folders...
+    yozainan-S: /home/youssef/Desktop/IOT/p2 => /vagrant
+==> yozainan-S: Running provisioner: shell...
+    yozainan-S: Running: /tmp/vagrant-shell20260409-61670-gb2hqg.sh
+    yozainan-S: ╔══════════════════════════════════════════════════════════════╗
+    yozainan-S: ║   yozainan-S — Part 2: K3s Server + 3 Apps Provisioning    ║
+    yozainan-S: ║   Role: Server Mode + Ingress + 3 Web Applications        ║
+    yozainan-S: ║   IP:   192.168.56.110                                 ║
+    yozainan-S: ╚══════════════════════════════════════════════════════════════╝
+    yozainan-S: >>> [yozainan-S] Installing dependencies...
+    yozainan-S: Get:1 https://deb.debian.org/debian bookworm InRelease [151 kB]
+    yozainan-S: Get:2 https://security.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+    yozainan-S: Get:3 https://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+    yozainan-S: Get:4 https://security.debian.org/debian-security bookworm-security/main Sources [185 kB]
+    yozainan-S: Get:5 https://deb.debian.org/debian bookworm-backports InRelease [59.4 kB]
+    yozainan-S: Get:6 https://deb.debian.org/debian bookworm/main Sources [9495 kB]
+    yozainan-S: Get:7 https://security.debian.org/debian-security bookworm-security/main amd64 Packages [294 kB]
+    yozainan-S: Get:8 https://security.debian.org/debian-security bookworm-security/main Translation-en [179 kB]
+    yozainan-S: Get:9 https://deb.debian.org/debian bookworm/main amd64 Packages [8792 kB]
+    yozainan-S: Get:10 https://deb.debian.org/debian bookworm/main Translation-en [6108 kB]
+    yozainan-S: Get:11 https://deb.debian.org/debian bookworm-updates/main Sources [3288 B]
+    yozainan-S: Get:12 https://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]
+    yozainan-S: Get:13 https://deb.debian.org/debian bookworm-updates/main Translation-en [5448 B]
+    yozainan-S: Get:14 https://deb.debian.org/debian bookworm-backports/main Sources [299 kB]
+    yozainan-S: Get:15 https://deb.debian.org/debian bookworm-backports/main amd64 Packages [305 kB]
+    yozainan-S: Get:16 https://deb.debian.org/debian bookworm-backports/main Translation-en [257 kB]
+    yozainan-S: Fetched 26.2 MB in 1min 13s (357 kB/s)
+    yozainan-S: Reading package lists...
+    yozainan-S: Reading package lists...
+    yozainan-S: Building dependency tree...
+    yozainan-S: Reading state information...
+    yozainan-S: The following additional packages will be installed:
+    yozainan-S:   libcurl3-gnutls libcurl4
+    yozainan-S: The following NEW packages will be installed:
+    yozainan-S:   curl libcurl4 net-tools
+    yozainan-S: The following packages will be upgraded:
+    yozainan-S:   libcurl3-gnutls
+    yozainan-S: 1 upgraded, 3 newly installed, 0 to remove and 82 not upgraded.
+    yozainan-S: Need to get 1337 kB of archives.
+    yozainan-S: After this operation, 2367 kB of additional disk space will be used.
+    yozainan-S: Get:1 https://deb.debian.org/debian bookworm/main amd64 libcurl4 amd64 7.88.1-10+deb12u14 [392 kB]
+    yozainan-S: Get:2 https://deb.debian.org/debian bookworm/main amd64 curl amd64 7.88.1-10+deb12u14 [316 kB]
+    yozainan-S: Get:3 https://deb.debian.org/debian bookworm/main amd64 libcurl3-gnutls amd64 7.88.1-10+deb12u14 [386 kB]
+    yozainan-S: Get:4 https://deb.debian.org/debian bookworm/main amd64 net-tools amd64 2.10-0.1+deb12u2 [243 kB]
+    yozainan-S: apt-listchanges: Reading changelogs...
+    yozainan-S: Fetched 1337 kB in 7s (195 kB/s)
+    yozainan-S: Selecting previously unselected package libcurl4:amd64.
+    yozainan-S: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 25481 files and directories currently installed.)
+    yozainan-S: Preparing to unpack .../libcurl4_7.88.1-10+deb12u14_amd64.deb ...
+    yozainan-S: Unpacking libcurl4:amd64 (7.88.1-10+deb12u14) ...
+    yozainan-S: Selecting previously unselected package curl.
+    yozainan-S: Preparing to unpack .../curl_7.88.1-10+deb12u14_amd64.deb ...
+    yozainan-S: Unpacking curl (7.88.1-10+deb12u14) ...
+    yozainan-S: Preparing to unpack .../libcurl3-gnutls_7.88.1-10+deb12u14_amd64.deb ...
+    yozainan-S: Unpacking libcurl3-gnutls:amd64 (7.88.1-10+deb12u14) over (7.88.1-10+deb12u8) ...
+    yozainan-S: Selecting previously unselected package net-tools.
+    yozainan-S: Preparing to unpack .../net-tools_2.10-0.1+deb12u2_amd64.deb ...
+    yozainan-S: Unpacking net-tools (2.10-0.1+deb12u2) ...
+    yozainan-S: Setting up net-tools (2.10-0.1+deb12u2) ...
+    yozainan-S: Setting up libcurl3-gnutls:amd64 (7.88.1-10+deb12u14) ...
+    yozainan-S: Setting up libcurl4:amd64 (7.88.1-10+deb12u14) ...
+    yozainan-S: Setting up curl (7.88.1-10+deb12u14) ...
+    yozainan-S: Processing triggers for man-db (2.11.2-2) ...
+    yozainan-S: Processing triggers for libc-bin (2.36-9+deb12u9) ...
+    yozainan-S: >>> [yozainan-S] Setting up swap space...
+    yozainan-S: Setting up swapspace version 1, size = 1024 MiB (1073737728 bytes)
+    yozainan-S: no label, UUID=81fb42ed-7d12-4331-a04f-bdf2dd716473
+    yozainan-S: >>> [yozainan-S] Installing K3s in SERVER mode (with Traefik)...
+    yozainan-S: [INFO]  Finding release for channel stable
+    yozainan-S: [INFO]  Using v1.34.6+k3s1 as release
+    yozainan-S: [INFO]  Downloading hash https://github.com/k3s-io/k3s/releases/download/v1.34.6%2Bk3s1/sha256sum-amd64.txt
+    yozainan-S: [INFO]  Downloading binary https://github.com/k3s-io/k3s/releases/download/v1.34.6%2Bk3s1/k3s
+    yozainan-S: [INFO]  Verifying binary download
+    yozainan-S: [INFO]  Installing k3s to /usr/local/bin/k3s
+    yozainan-S: [INFO]  Skipping installation of SELinux RPM
+    yozainan-S: [INFO]  Creating /usr/local/bin/kubectl symlink to k3s
+    yozainan-S: [INFO]  Creating /usr/local/bin/crictl symlink to k3s
+    yozainan-S: [INFO]  Creating /usr/local/bin/ctr symlink to k3s
+    yozainan-S: [INFO]  Creating killall script /usr/local/bin/k3s-killall.sh
+    yozainan-S: [INFO]  Creating uninstall script /usr/local/bin/k3s-uninstall.sh
+    yozainan-S: [INFO]  env: Creating environment file /etc/systemd/system/k3s.service.env
+    yozainan-S: [INFO]  systemd: Creating service file /etc/systemd/system/k3s.service
+    yozainan-S: [INFO]  systemd: Enabling k3s unit
+    yozainan-S: Created symlink /etc/systemd/system/multi-user.target.wants/k3s.service → /etc/systemd/system/k3s.service.
+    yozainan-S: [INFO]  systemd: Starting k3s
+    yozainan-S: >>> [yozainan-S] Waiting for K3s node to become Ready...
+    yozainan-S:     Waiting for K3s node to be Ready... (0s/180s)
+    yozainan-S: >>> [yozainan-S] K3s node is Ready!
+    yozainan-S: >>> [yozainan-S] Waiting for Traefik Ingress Controller...
+    yozainan-S:     Waiting for Traefik to be Running... (0s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (5s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (10s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (15s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (20s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (25s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (30s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (35s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (40s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (45s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (50s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (55s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (60s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (65s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (70s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (75s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (80s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (85s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (90s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (95s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (100s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (105s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (110s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (115s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (120s/180s)
+    yozainan-S:     Waiting for Traefik to be Running... (125s/180s)
